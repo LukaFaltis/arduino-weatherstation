@@ -9,7 +9,6 @@
 //				The Arduino sketch is available from the same git repo. And also a detailed build report
 //
 // Implements:	ASCOM ObservingConditions interface version: 1.0.0
-// Author:		Manoj Koushik (manoj.koushik@gmail.com
 //
 // --------------------------------------------------------------------------------
 
@@ -370,10 +369,10 @@ namespace ASCOM.Arduino
 
                 // This property can be interpreted as 0.0 = Dry any positive nonzero value = wet.
                 // Rainfall intensity is classified according to the rate of precipitation:
-                // Light rain — when the precipitation rate is < 2.5 mm (0.098 in) per hour
-                // Moderate rain — when the precipitation rate is between 2.5 mm (0.098 in) - 7.6 mm (0.30 in) or 10 mm (0.39 in) per hour
-                // Heavy rain — when the precipitation rate is > 7.6 mm (0.30 in) per hour, or between 10 mm (0.39 in) and 50 mm (2.0 in) per hour
-                // Violent rain — when the precipitation rate is > 50 mm (2.0 in) per hour
+                // Light rain Â— when the precipitation rate is < 2.5 mm (0.098 in) per hour
+                // Moderate rain Â— when the precipitation rate is between 2.5 mm (0.098 in) - 7.6 mm (0.30 in) or 10 mm (0.39 in) per hour
+                // Heavy rain Â— when the precipitation rate is > 7.6 mm (0.30 in) per hour, or between 10 mm (0.39 in) and 50 mm (2.0 in) per hour
+                // Violent rain Â— when the precipitation rate is > 50 mm (2.0 in) per hour
                 LogMessage("BoltWoodFile", "get RainRate");
                 rainRate = double.Parse(CommandString("RR", false));
                 // Sensor reports inches/hour. We need to convert to mm/hour
@@ -414,16 +413,16 @@ namespace ASCOM.Arduino
                 // Sky brightness (Ascom needs Lux, but arduino is returning voltage. Calibration settings are used to convert
                 // 0.0001 lux  Moonless, overcast night sky (starlight)
                 // 0.002 lux Moonless clear night sky with airglow
-                // 0.27–1.0 lux  Full moon on a clear night
+                // 0.27Â–1.0 lux  Full moon on a clear night
                 // 3.4 lux Dark limit of civil twilight under a clear sky
                 // 50 lux  Family living room lights (Australia, 1998)
                 // 80 lux  Office building hallway/toilet lighting
                 // 100 lux Very dark overcast day
-                // 320–500 lux Office lighting
+                // 320Â–500 lux Office lighting
                 // 400 lux Sunrise or sunset on a clear day.
                 // 1000 lux  Overcast day; typical TV studio lighting
-                // 10000–25000 lux Full daylight (not direct sun)
-                // 32000–100000 lux  Direct sunlight
+                // 10000Â–25000 lux Full daylight (not direct sun)
+                // 32000Â–100000 lux  Direct sunlight
                 LogMessage("BoltWoodFile", "get SkyBrightness");
                 float lightSlope = (dayLux - nightLux) / (dayVol - nightVol);
                 skyBrightness = (int)(lightSlope * double.Parse(CommandString("SB", false)));
@@ -440,12 +439,12 @@ namespace ASCOM.Arduino
                 // R W Since Now()        c w r d C A
                 // 0 0 00004 038506.08846 1 2 1 0 0 0
                 // The fields mean:
-                // Heading Col’s Meaning
+                // Heading ColÂ’s Meaning
                 // Date    1-10  local date yyyy - mm - dd
                 // Time    12-22 local time hh: mm: ss.ss(24 hour clock)
                 // T       24    temperature units displayed and in this data, 'C' for Celsius or 'F' for Fahrenheit
-                // V       26    wind velocity units displayed and in this data, ‘K’ for km / hr or ‘M’ for mph or'm' for m/s
-                // SkyT    28-33 sky - ambient temperature, 999. for saturated hot, -999. for saturated cold, or –998. for wet
+                // V       26    wind velocity units displayed and in this data, Â‘KÂ’ for km / hr or Â‘MÂ’ for mph or'm' for m/s
+                // SkyT    28-33 sky - ambient temperature, 999. for saturated hot, -999. for saturated cold, or Â–998. for wet
                 // AmbT    35-40 ambient temperature
                 // SenT    41-47 sensor case temperature, 999. for saturated hot, -999. for saturated cold. Neither
                 //               saturated condition should ever occur.
